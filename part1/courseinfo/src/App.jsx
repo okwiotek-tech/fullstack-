@@ -11,7 +11,6 @@ const Part = (props) => {
 }
 
 const Content = (props) => {
-  // Odczytujemy dane z tablicy za pomocą indeksów [0], [1] i [2]
   return (
     <div>
       <Part part={props.parts[0].name} exercises={props.parts[0].exercises} />
@@ -28,30 +27,31 @@ const Total = (props) => {
 }
 
 const App = () => {
-  const course = 'Half Stack application development'
-  
-  // Wszystkie trzy obiekty zamknięte w jednej tablicy
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-  ]
+  // Cały kurs i jego części zamknięte w jednym, głównym obiekcie
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
   return (
     <div>
-      <Header course={course} />
-      {/* Przekazujemy całą tablicę do komponentów */}
-      <Content parts={parts} />
-      <Total parts={parts} />
+      {/* Przekazujemy odpowiednie fragmenty głównego obiektu */}
+      <Header course={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   )
 }
